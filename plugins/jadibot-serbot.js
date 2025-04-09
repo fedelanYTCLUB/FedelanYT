@@ -38,13 +38,13 @@ let pathMikuJadiBot = path.join(`./${jadi}/`, id)
 if (!fs.existsSync(pathMikuJadiBot)){
 fs.mkdirSync(pathMikuJadiBot, { recursive: true })
 }
-meguminJBOptions.pathMikuJadiBot = pathMikuJadiBot
-meguminJBOptions.m = m
-meguminJBOptions.conn = conn
-meguminJBOptions.args = args
-meguminJBOptions.usedPrefix = usedPrefix
-meguminJBOptions.command = command
-mikuJadiBot(meguminJBOptions)
+mikuJBOptions.pathMikuJadiBot = pathMikuJadiBot
+mikuJBOptions.m = m
+mikuJBOptions.conn = conn
+mikuJBOptions.args = args
+mikuJBOptions.usedPrefix = usedPrefix
+mikuJBOptions.command = command
+mikuJadiBot(mikuJBOptions)
 global.db.data.users[m.sender].Subs = new Date * 1
 } 
 handler.help = ['serbot', 'serbot code']
@@ -62,8 +62,8 @@ if (args[1]) args[1] = args[1].replace(/^--code$|^code$/, "").trim()
 if (args[0] == "") args[0] = undefined
 }
 const pathCreds = path.join(pathMikuJadiBot, "creds.json")
-if (!fs.existsSync(pathMeguminJadiBot)){
-fs.mkdirSync(pathMeguminJadiBot, { recursive: true })}
+if (!fs.existsSync(pathMikuJadiBot)){
+fs.mkdirSync(pathMikuJadiBot, { recursive: true })}
 try {
 args[0] && args[0] != undefined ? fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t')) : ""
 } catch {
