@@ -1,7 +1,7 @@
 {
-"name": "Megumin-Bot-MD",
+"name": "Hatsune-Miku",
 "version": "2.0.5",
-"description": "El Bot Más Explosivo De WhatsApp",
+"description": "La melodia mas Aguda!",
 "main": "index.js",
 "type": "module",
 "directories": {
@@ -16,16 +16,16 @@
 "eslint": "eslint .",
 "eslintfix": "eslint --fix ."
 },
-"homepage": "https://github.com/David-Chian/Megumin-Bot-MD",
+"homepage": "https://github.com/Brauliovh3/HATSUNE-MIKU",
 "author": {
-"name": "David-Chian"
+"name": "DEPOOL"
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/David-Chian/Megumin-Bot-MD.git"
+"url": "git+https://github.com/Brauliovh3/HATSUNE-MIKU.git"
 },
 "bugs": {
-"url": "https://github.com/David-Chian/Megumin-Bot-MD/issues"
+"url": "https://github.com/Brauliovh3/HATSUNE-MIKU/issues"
 },
 "license": "GPL-3.0-or-later",
 "dependencies": {
