@@ -86,7 +86,7 @@ global.redes = [canal, canal2, git, youtube, github, correo].getRandom()
 
 //Imagen
 let category = "imagen"
-const db = './src/miku.jpg'
+const db = './src/JSON/miku.jpg'
 const db_ = JSON.parse(fs.readFileSync(db))
 const random = Math.floor(Math.random() * db_.links[category].length)
 const randomlink = db_.links[category][random]
