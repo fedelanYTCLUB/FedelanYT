@@ -34,12 +34,12 @@ global.meguminJadibts = true
 //• ↳ ◜𝑴𝑨𝑹𝑪𝑨𝑺 𝑫𝑬 𝑨𝑮𝑼𝑨◞ • 💌
 global.packsticker = `💙🌱━━━━━━━━\n├ ɓσƭ:\n├ ρяοριєταяιο:\n├ ƒєϲнα ∂є ϲяєαϲιόи:\n├ нοяα:\n💙🌱━━━━━━━━`
 global.packname = `💙🌱 ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ 🌱💙`
-global.author = `💙🌱━━━━━━━━\n⇝ ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ-ᴄʜᴀɴ♪\n⇝ ᴅᴀᴠɪᴅ-ᴄʜɪᴀɴ\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n💙🌱━━━━━━━━\n\n\n\nsᴛɪᴄᴋᴇʀ ʙʏ: ᴍɪᴋᴜ💙ʙᴏᴛ`;
+global.author = `💙🌱━━━━━━━━\n⇝ ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ-depool♪\n⇝ DEPOOL\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n💙🌱━━━━━━━━\n\n\n\nsᴛɪᴄᴋᴇʀ ʙʏ: ᴍɪᴋᴜ💙ʙᴏᴛ`;
 global.wm = '💙 ᴍɪᴋᴜᴍɪɴ ʙᴏᴛ 🌱';
 global.titulowm = '💙🌱 ᴍɪᴋᴜ ᴠᴏᴄᴀʟᴏɪᴅ 🌱💙';
 global.titulowm2 = `💙🌱 ᴍɪᴋᴜ ᴠᴏᴄᴀʟᴏɪᴅ 🌱💙`
 global.igfg = 'ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ💙(◕‿◕)♪'
-global.botname = '💙 ᴍɪᴋᴜᴍɪɴ ʙᴏᴛ 🌱'
+global.botname = '💙 ᴍɪᴋᴜ ʙᴏᴛ 🌱'
 global.dev = '© ᴘᴏᴡᴇʀᴇᴅ ʙʏ (ㅎㅊDEPOOLㅊㅎ)💙🌱'
 global.textbot = 'ᴍɪᴋᴜᴍɪɴ💙ʙᴏᴛ : ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ💙(◕‿◕)♪'
 global.gt = '💙🌱 ᴍɪᴋᴜ ᴠᴏᴄᴀʟᴏɪᴅ 🌱💙';
