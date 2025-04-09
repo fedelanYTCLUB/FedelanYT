@@ -15,17 +15,17 @@ const require = createRequire(__dirname)
 const { name, description, author, version } = require(join(__dirname, './package.json'))
 const rl = createInterface(process.stdin, process.stdout)
 
-cfonts.say('Megumin', {
+cfonts.say('HATSUNE\nMIKU', {
   font: 'block',
   align: 'center',
   colors: ['blue', 'cyan'],
-  gradient: ['magenta', 'yellow']
+  gradient: ['magenta', 'cyan']
 })
 
-cfonts.say('Made With David-Chian', {
+cfonts.say('Made With DEPOOL', {
   font: 'console',
   align: 'center',
-  colors: ['cyan', 'magenta', 'yellow']
+  colors: ['cyan', 'cyan', 'yellow']
 })
 
 let isRunning = false
@@ -63,7 +63,7 @@ function start(file) {
 
   p.on('exit', (_, code) => {
     isRunning = false
-    console.error(chalk.redBright('🚩 Error:\n'), code)
+    console.error(chalk.redBright('💙 Error:\n'), code)
     process.exit()
     if (code === 0) return
     watchFile(args[0], () => {
@@ -75,7 +75,7 @@ function start(file) {
 
 process.on('warning', warning => {
   if (warning.name === 'MaxListenersExceededWarning') {
-    console.warn(chalk.yellow('🚩 Se excedió el límite de Listeners en:'))
+    console.warn(chalk.yellow('💙 Se excedió el límite de Listeners en:'))
     console.warn(warning.stack)
   }
 })
