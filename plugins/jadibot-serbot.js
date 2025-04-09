@@ -53,7 +53,7 @@ handler.command = ['jadibot', 'serbot']
 export default handler 
 
 export async function mikuJadiBot(options) {
-let { pathMeguminJadiBot, m, conn, args, usedPrefix, command } = options
+let { pathMikuJadiBot, m, conn, args, usedPrefix, command } = options
 const mcode = args[0] && /(--code|code)/.test(args[0].trim()) ? true : args[1] && /(--code|code)/.test(args[1].trim()) ? true : false
 let txtCode, codeBot, txtQR
 if (mcode) {
