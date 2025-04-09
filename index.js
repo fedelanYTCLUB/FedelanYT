@@ -25,7 +25,7 @@ cfonts.say('HATSUNE\nMIKU', {
 cfonts.say('Made With DEPOOL', {
   font: 'console',
   align: 'center',
-  colors: ['cyan', 'cyan', 'yellow']
+  colors: ['cyan', 'cyan', 'cyan']
 })
 
 let isRunning = false
