@@ -22,7 +22,7 @@ let rtx2 = "*╭━╴╶╴╶╴╶╴ꖒ╶╴╶╴╶╴╶━╮*\n*│�
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const meguminJBOptions = {}
+const mikuJBOptions = {}
 if (global.conns instanceof Array) console.log()
 else global.conns = []
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
