@@ -13,7 +13,7 @@ import '../plugins/main-allfake.js';
 global.botnumber = '' //Ejemplo: +573138954963
 global.confirmCode = ''
 
-//• ↳𝑺𝑶𝑳𝑶 𝑫𝑬𝑺𝑨𝑹𝑹𝑶𝑳𝑳𝑨𝑫𝑶𝑹𝑬𝑺 𝑨𝑷𝑹𝑶𝑩𝑨𝑫𝑶𝑺
+//𝑺𝑶𝑳𝑶 𝑫𝑬𝑺𝑨𝑹𝑹𝑶𝑳𝑳𝑨𝑫𝑶𝑹𝑬𝑺 
 global.owner = [
   ['51988514570', '(ㅎㅊDEPOOLㅊㅎ)', true],
   ['51939508653', 'Rafael', true]
@@ -31,29 +31,29 @@ global.sessions = 'MikuSession'
 global.jadi = 'MikuJadiBot'
 global.meguminJadibts = true
 
-//• ↳ ◜𝑴𝑨𝑹𝑪𝑨𝑺 𝑫𝑬 𝑨𝑮𝑼𝑨◞ • 💌
+//𝑴𝑨𝑹𝑪𝑨𝑺 𝑫𝑬 𝑨𝑮𝑼𝑨
 global.packsticker = `💙🌱━━━━━━━━\n├ ɓσƭ:\n├ ρяοριєταяιο:\n├ ƒєϲнα ∂є ϲяєαϲιόи:\n├ нοяα:\n💙🌱━━━━━━━━`
 global.packname = `💙🌱 ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ 🌱💙`
 global.author = `💙🌱━━━━━━━━\n⇝ ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ-depool♪\n⇝ DEPOOL\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n💙🌱━━━━━━━━\n\n\n\nsᴛɪᴄᴋᴇʀ ʙʏ: ᴍɪᴋᴜ💙ʙᴏᴛ`;
-global.wm = '💙 ᴍɪᴋᴜᴍɪɴ ʙᴏᴛ 🌱';
+global.wm = '💙ᴍɪᴋᴜ ʙᴏᴛ🌱';
 global.titulowm = '💙🌱 ᴍɪᴋᴜ ᴠᴏᴄᴀʟᴏɪᴅ 🌱💙';
 global.titulowm2 = `💙🌱 ᴍɪᴋᴜ ᴠᴏᴄᴀʟᴏɪᴅ 🌱💙`
 global.igfg = 'ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ💙(◕‿◕)♪'
 global.botname = '💙 ᴍɪᴋᴜ ʙᴏᴛ 🌱'
 global.dev = '© ᴘᴏᴡᴇʀᴇᴅ ʙʏ (ㅎㅊDEPOOLㅊㅎ)💙🌱'
-global.textbot = 'ᴍɪᴋᴜᴍɪɴ💙ʙᴏᴛ : ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ💙(◕‿◕)♪'
+global.textbot = 'ᴍɪᴋᴜ💙ʙᴏᴛ : ʜᴀᴛsᴜɴᴇ ᴍɪᴋᴜ💙(◕‿◕)♪'
 global.gt = '💙🌱 ᴍɪᴋᴜ ᴠᴏᴄᴀʟᴏɪᴅ 🌱💙';
 global.namechannel = '💙HATSUNE MIKU CHANNEL💙'
 
 
-//• ↳ ◜𝑰𝑴𝑨́𝑮𝑬𝑵𝑬𝑺◞ • 🌇
+//𝑰𝑴𝑨́𝑮𝑬𝑵𝑬𝑺
 global.imagen1 = 'https://c4.wallpaperflare.com/wallpaper/245/793/312/anime-hatsune-miku-vocaloid-anime-girls-wallpaper-preview.jpg'
 global.imagen2 = 'https://backiee.com/static/wallpapers/560x315/321035.jpg'
 global.imagen3 = 'https://wallpapersok.com/images/hd/cute-cat-like-hatsune-miku-hd-xasuiabk5uana41d.jpg'
 global.imagenadult = 'https://images.steamusercontent.com/ugc/1928123044154294449/70F811A7474838BAAF511189C48760078E022D92/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
 global.logo = 'https://w7.pngwing.com/pngs/76/365/png-transparent-hatsune-miku-chibi-otaku-hatsune-miku-thumbnail.png'
 
-//• ↳ ◜𝑭𝑨𝑲𝑬 𝑬𝑺𝑻𝑰𝑳𝑶◞ • 🪩
+//• ↳ ◜𝑭𝑨𝑲𝑬 𝑬𝑺𝑻𝑰𝑳𝑶
 global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: '💙🌱 ᴍɪᴋᴜ ᴠᴏᴄᴀʟᴏɪᴅ 🌱💙', orderTitle: 'Bang', thumbnailUrl: logo, sellerJid: '0@s.whatsapp.net'}}}
 
 //• ↳ ◜𝑳𝑰𝑵𝑲𝑺◞ • 🌿
