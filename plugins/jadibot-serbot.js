@@ -78,7 +78,7 @@ const drmer = Buffer.from(drm1 + drm2, `base64`)
 let { version, isLatest } = await fetchLatestBaileysVersion()
 const msgRetry = (MessageRetryMap) => { }
 const msgRetryCache = new NodeCache()
-const { state, saveState, saveCreds } = await useMultiFileAuthState(pathMeguminJadiBot)
+const { state, saveState, saveCreds } = await useMultiFileAuthState(pathMikuJadiBot)
 
 const connectionOptions = {
 printQRInTerminal: false,
