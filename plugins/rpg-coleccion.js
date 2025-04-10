@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 
 
-const dbPath = path.join(process.cwd(), 'storage', 'waifudatabase');
-const databaseFilePath = path.join(dbPath, 'database.json');
+const dbPath = path.join(process.cwd(), 'src', 'database');
+const databaseFilePath = path.join(dbPath, 'waifudatabase.json');
 
 
 function loadDatabase() {
