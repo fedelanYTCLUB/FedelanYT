@@ -268,7 +268,7 @@ process.on('uncaughtException', console.error);
 
 global.rutaJadiBot = join(__dirname, '../MikuJadiBot')
 
-if (global.meguminJadibts) {
+if (global.mikuJadibts) {
 if (!existsSync(global.rutaJadiBot)) {
 mkdirSync(global.rutaJadiBot, { recursive: true }) 
 console.log(chalk.bold.cyan(`La carpeta: ${jadi} se creó correctamente.`))
@@ -283,7 +283,7 @@ for (const gjbts of readRutaJadiBot) {
 const botPath = join(rutaJadiBot, gjbts)
 const readBotPath = readdirSync(botPath)
 if (readBotPath.includes(creds)) {
-meguminJadiBot({pathMeguminJadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot'})
+mikuJadiBot({pathMikuJadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot'})
 }
 }
 }
