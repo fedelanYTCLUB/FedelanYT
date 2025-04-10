@@ -1,81 +1,91 @@
 import fetch from 'node-fetch';
-const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, isPrems}) => {
-  if (!db.data.chats[m.chat].nsfw && m.isGroup) return m.reply('💙 *¡Estos comandos están desactivados!*'); 
+
+const handler = async (m, { conn, usedPrefix, isPrems }) => {
+
+  if (!db.data.chats[m.chat].nsfw && m.isGroup) {
+    return m.reply('💙 *¡Estos comandos están desactivados en este grupo!*\nUsa *' + usedPrefix + 'enable nsfw* para activarlos.');
+  }
+
   try {
-    const pp = imagenadult
-    const d = new Date(new Date + 3600000);
-    const locale = 'es';
-    const week = d.toLocaleDateString(locale, {weekday: 'long'});
-    const date = d.toLocaleDateString(locale, {day: 'numeric', month: 'long', year: 'numeric'});
-    const _uptime = process.uptime() * 1000;
-    const uptime = clockString(_uptime);
+  
+    const imagenadult = 'https://images.steamusercontent.com/ugc/1928123044154294449/70F811A7474838BAAF511189C48760078E022D92/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
+    const pp = await (await fetch(imagenadult)).buffer();
+
+  
     const user = global.db.data.users[m.sender];
-    const {money, joincount} = global.db.data.users[m.sender];
-    const {exp, cookies, level, role} = global.db.data.users[m.sender];
-    const rtotalreg = Object.values(global.db.data.users).filter((user) => user.registered == true).length;
-    const more = String.fromCharCode(8206);
-    const readMore = more.repeat(850);
-    const taguser = '@' + m.sender.split('@s.whatsapp.net')[0];
-    const doc = ['pdf', 'zip', 'vnd.openxmlformats-officedocument.presentationml.presentation', 'vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'vnd.openxmlformats-officedocument.wordprocessingml.document'];
-    const document = doc[Math.floor(Math.random() * doc.length)];
-        const str = `*╭━━━━•『  MENU +🔞 』•━━━━╮*
+    const { level, exp, role } = user;
+
+    
+    const str = `*╭━━━━•『  MENU +🔞 』•━━━━╮*
 *│╭─────━───────━────*
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.pack_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.pack2_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.pack3_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.videoxxx_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.videolesbixxx_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.tetas_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.booty_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.ecchi_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.furro_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.imagenlesbians_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.panties_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.pene_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.porno_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.randomxxx_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.pechos_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.yaoi_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.yaoi2_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.yuri_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.yuri2_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.trapito_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.hentai_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.nsfwloli_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.nsfworgy_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.nsfwfoot_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.nsfwass_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.nsfwbdsm_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.nsfwcum_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.nsfwero_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.nsfwfemdom_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.nsfwglass_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.hentaipdf *<texto>*_
-││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 _.hentaisearch *<texto>*_
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}pack
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}pack2
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}pack3
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}videoxxx
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}videolesbixxx
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}tetas
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}booty
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}ecchi
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}furro
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}imagenlesbians
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}panties
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}pene
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}porno
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}randomxxx
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}pechos
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}yaoi
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}yaoi2
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}yuri
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}yuri2
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}trapito
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}hentai
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}nsfwloli
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}nsfworgy
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}nsfwfoot
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}nsfwass
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}nsfwbdsm
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}nsfwcum
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}nsfwero
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}nsfwfemdom
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}nsfwglass
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}hentaipdf *<texto>*
+││ ◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸🔞 ${usedPrefix}hentaisearch *<texto>*
 *│╰人人人人人人人人人人人人╯*
 *╰─ - 🌱⢄⢁💙*⢄⢁🔞⡠*💙⡈⡠🌱 - ─╯*`.trim();
-    if (m.isGroup) {
-      const fkontak2 = {'key': {'participants': '0@s.whatsapp.net', 'remoteJid': 'status@broadcast', 'fromMe': false, 'id': 'Halo'}, 'message': {'contactMessage': {'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}, 'participant': '0@s.whatsapp.net'};
-      conn.sendMessage(m.chat, {imageUrl: pp, caption: str.trim(), mentions: [...str.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net')}, {quoted: fkontak2});
-    } else {
-      const fkontak2 = {'key': {'participants': '0@s.whatsapp.net', 'remoteJid': 'status@broadcast', 'fromMe': false, 'id': 'Halo'}, 'message': {'contactMessage': {'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}, 'participant': '0@s.whatsapp.net'};
-      conn.sendMessage(m.chat, {imageUrl: pp, caption: str.trim(), mentions: [...str.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net')}, {quoted: fkontak2});
-    }
-  } catch {
-    conn.reply(m.chat, '💙 *¡Ocurrió Un Error!*', m);
+
+   
+    await conn.sendMessage(
+      m.chat,
+      {
+        image: pp,
+        caption: str,
+        mentions: [m.sender],
+        contextInfo: {
+          externalAdReply: {
+            title: '🔞 Menú NSFW 🔞',
+            body: `Nivel: ${level} | Rol: ${role}`,
+            thumbnail: pp,
+            mediaType: 1,
+            mediaUrl: '',
+            sourceUrl: ''
+          }
+        }
+      },
+      { quoted: m }
+    );
+
+  } catch (error) {
+    console.error('Error en el menú NSFW:', error);
+    m.reply('💙 *¡Ocurrió un error!* Intenta nuevamente.');
   }
 };
-handler.tags = ['main']
-handler.help = ['hornymenu']
+
+
+handler.help = ['hornymenu'];
+handler.tags = ['nsfw'];
+handler.command = ['menuhorny', 'hornymenu'];
 handler.group = true;
-handler.register = true
-handler.command = ['menuhorny','hornymenu'];
+handler.register = true;
 handler.exp = 50;
-handler.fail = null;
+
 export default handler;
-function clockString(ms) {
-  const h = isNaN(ms) ? '--' : Math.floor(ms / 3600000);
-  const m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60;
-  const s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60;
-  return [h, m, s].map((v) => v.toString().padStart(2, 0)).join(':');
-}
