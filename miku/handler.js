@@ -32,7 +32,7 @@ if (!m)
 return
 global.mconn = m 
 m.exp = 0
-m.chocolates = false
+m.cebollines = false
 try {
 let user = global.db.data.users[m.sender]
 //if (typeof user !== 'object')
@@ -44,7 +44,7 @@ if (!('premium' in user)) user.premium = false
 if (!('muto' in user)) user.muto = false
 if (!isNumber(user.joincount)) user.joincount = 1
 if (!isNumber(user.money)) user.money = 150
-if (!isNumber(user.chocolates)) user.chocolates = 10
+if (!isNumber(user.cebollines)) user.cebollines = 10
 if (!('registered' in user)) user.registered = false
 
 if (!user.registered) {
@@ -96,7 +96,7 @@ lastduel: 0,
 lastpago: 0,
 lastrob: 0,
 level: 0,
-chocolates: 10,
+cebollines: 10,
 money: 100,
 muto: false,
 premium: false,
@@ -383,7 +383,7 @@ continue
 }
 
 m.exp += xp
-if (plugin.chocolates && global.db.data.users[m.sender].chocolates < plugin.chocolates * 1) {
+if (plugin.cebollines && global.db.data.users[m.sender].cebollines < plugin.cebollines * 1) {
 m.reply(`💙 No tienes suficiente cebollines para usar este comando.`) 
 continue
 }
@@ -443,7 +443,7 @@ await plugin.after.call(this, m, extra)
 } catch (e) {
 console.error(e)
 }}
-if (m.chocolates)
+if (m.cebollines)
 conn.reply(m.chat, `Utilizaste *${+m.cebollines}* 🌱`, m)
 }
 if (m.money)
