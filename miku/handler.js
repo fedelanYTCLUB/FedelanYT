@@ -35,7 +35,6 @@ m.exp = 0
 m.cebollines = false
 try {
 let user = global.db.data.users[m.sender]
-//if (typeof user !== 'object')
 if (typeof user !== 'object')
 global.db.data.users[m.sender] = {}
 if (user) {
@@ -192,7 +191,7 @@ const isPrems = isROwner || global.db.data.users[m.sender].premiumTime > 0
 if (opts['queque'] && m.text && !(isPrems)) {
 let queque = this.msgqueque, time = 1000 * 5
 const previousID = queque[queque.length - 1]
-queque.push(m.id || m.key.id)
+queque.push(m.id || (m.key?.id)) // Safe access to m.key
 setInterval(async function () {
 if (queque.indexOf(previousID) === -1) clearInterval(this)
 await delay(time)
@@ -235,8 +234,8 @@ console.error(e)
 let data = (await conn.onWhatsApp(jid))[0] || {}
 if (data.exists)
 m.reply(`⧋〘📕 FORMATO ERRONEO 📕〙⧋\n\n❒ 𝗘𝗥𝗥𝗢𝗥:\n\`\`\`${format(e)}\`\`\`\n`.trim(), data.jid)
-}*/
-}}
+}*/}
+}
 if (!opts['restrict'])
 if (plugin.tags && plugin.tags.includes('admin')) {
 // global.dfail('restrict', m, this)
@@ -302,7 +301,7 @@ if (!isAccept) {
 continue
 }
 
-global.db.data.settings[mconn.conn.user.jid].botcommandCount += 1
+global.db.data.settings[this.user.jid].botcommandCount += 1
 
 m.plugin = name
 if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
@@ -426,14 +425,14 @@ m.error = e
 console.error(e)
 if (e) {
 let text = format(e)
-// for (let key of Object.values(global.APIKeys))
+ for (let key of Object.values(global.APIKeys))
 text = text.replace(new RegExp(key, 'g'), 'Admin')
 if (e.name)
-/*for (let [jid] of global.owner.filter(([number, _, isDeveloper]) => isDeveloper && number)) {
+for (let [jid] of global.owner.filter(([number, _, isDeveloper]) => isDeveloper && number)) {
 let data = (await conn.onWhatsApp(jid))[0] || {}
 if (data.exists)
 m.reply(`⧋〘📕 𝗘𝗥𝗥𝗢𝗥 │ 𝗙𝗔𝗟𝗟𝗢 📕〙⧋\n\n❒ 𝗘𝗥𝗥𝗢𝗥:\n\`\`\`${format(e)}\`\`\`\n`.trim(), data.jid)
-}*/
+}
 m.reply(text)
 }} finally {
 
@@ -509,7 +508,7 @@ premium: '💙 *Esta función solo es para usuarios Premium.',
 private: '💙 *Esta función solo puede ser usada en chat privado.*', 
 admin: '💙 *Este comando solo puede ser usado por admins.*', 
 botAdmin: '💙 *Para usar esta función debo ser admin.*', 
-unreg: '💙 *¡Hey! no estas registrado, registrese para usar esta función*\n\n*/reg nombre.edad*\n\n*_❕ Ejemplo_* : *.reg (ㅎㅊDEPOOLㅊㅎ).23*',
+unreg: '💙 *¡Hey! no estas registrado, registrese para usar esta función*\n\n*/reg nombre.edad*\n\n*_❕ Ejemplo_* : *.reg (ㅎㅊDEPOOLㅊㅎ).18*',
 restrict: '💙 *Esta característica esta desactivada.*'
 }[type];
 if (msg) return conn.reply(m.chat, msg, m, rcanal).then(_ => m.react('💢'))}
