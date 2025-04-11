@@ -1,15 +1,25 @@
-import {toAudio} from '../lib/converter.js';
+import {toAudio} from '../lib/converter2.js';
+
 const handler = async (m, {conn, usedPrefix, command}) => {
   const q = m.quoted ? m.quoted : m;
   const mime = (q || q.msg).mimetype || q.mediaType || '';
-  if (!/video|audio/.test(mime)) throw `*💙 𝚁𝙴𝚂𝙿𝙾𝙽𝙳𝙰 𝙰𝙻 𝚅𝙸𝙳𝙴𝙾 𝙾 𝙽𝙾𝚃𝙰 𝙳𝙴 𝚅𝙾𝚉 𝚀𝚄𝙴 𝙳𝙴𝚂𝙴𝙴 𝙲𝙾𝙽𝚅𝙴𝚁𝚃𝙸𝚁 𝙰 𝙰𝚄𝙳𝙸𝙾/𝙼𝙿𝟹*`;
-  const media = await q.download();
-  if (!media) throw '*💙 𝙻𝙾 𝙻𝙰𝙼𝙴𝙽𝚃𝙾, 𝙾𝙲𝚄𝚁𝚁𝙸𝙾 𝚄𝙽 𝙴𝚁𝚁𝙾𝚁 𝙰𝙻 𝙳𝙴𝚂𝙲𝙰𝚁𝙶𝙰𝚁 𝚂𝚄 𝚅𝙸𝙳𝙴𝙾, 𝙿𝙾𝚁 𝙵𝙰𝚅𝙾𝚁 𝚅𝚄𝙴𝙻𝚅𝙰 𝙰 𝙸𝙽𝚃𝙴𝙽𝚃𝙰𝚁𝙻𝙾*';
-  const audio = await toAudio(media, 'mp4');
-  if (!audio.data) throw '*💙 𝙻𝙾 𝙻𝙰𝙼𝙴𝙽𝚃𝙾, 𝙾𝙲𝚄𝚁𝚁𝙸𝙾 𝚄𝙽 𝙴𝚁𝚁𝙾𝚁 𝙰𝙻 𝙲𝙾𝙽𝚅𝙴𝚁𝚃𝙸𝚁 𝚂𝚄 𝙽𝙾𝚃𝙰 𝙳𝙴 𝚅𝙾𝚉 𝙰 𝙰𝚄𝙳𝙸𝙾/𝙼𝙿𝟹, 𝙿𝙾𝚁 𝙵𝙰𝚅𝙾𝚁 𝚅𝚄𝙴𝙻𝚅𝙰 𝙰 𝙸𝙽𝚃𝙴𝙽𝚃𝙰𝚁𝙻𝙾*';
-  conn.sendMessage(m.chat, {audio: audio.data, mimetype: 'audio/mpeg'}, {quoted: m});
+  if (!/video|audio/.test(mime)) throw "💙 *RESPONDA AL VIDEO O NOTA DE VOZ QUE DESEE CONVERTIR A AUDIO/MP3*";
+  
+  try {
+    const media = await q.download();
+    if (!media) throw "💙 *LO LAMENTO, OCURRIO UN ERROR AL DESCARGAR SU VIDEO, POR FAVOR VUELVA A INTENTARLO*";
+    
+    const audio = await toAudio(media, 'mp4');
+    if (!audio.data) throw "💙 *LO LAMENTO, OCURRIO UN ERROR AL CONVERTIR SU NOTA DE VOZ A AUDIO/MP3, POR FAVOR VUELVA A INTENTARLO*";
+    
+    conn.sendMessage(m.chat, {audio: audio.data, mimetype: 'audio/mpeg'}, {quoted: m});
+  } catch (error) {
+    console.error('Error in tomp3 handler:', error);
+    throw `💙 *OCURRIO UN ERROR*: ${error.message}`;
+  }
 };
+
 handler.alias = ['tomp3', 'toaudio'];
 handler.command = ['tomp3','toaudio'];
-handler.register = true
+handler.register = true;
 export default handler;
