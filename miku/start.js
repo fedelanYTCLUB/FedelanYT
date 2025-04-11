@@ -75,7 +75,7 @@ loadDatabase();
 
 /* ------------------------------------------------*/
 
-global.chatgpt = new Low(new JSONFile(path.join(__dirname, '/db/chatgpt.json')));
+global.chatgpt = new Low(new JSONFile(path.join(__dirname, './src/database/chatgpt.json')));
 global.loadChatgptDB = async function loadChatgptDB() {
 if (global.chatgpt.READ) {
 return new Promise((resolve) =>
@@ -283,7 +283,7 @@ for (const gjbts of readRutaJadiBot) {
 const botPath = join(rutaJadiBot, gjbts)
 const readBotPath = readdirSync(botPath)
 if (readBotPath.includes(creds)) {
-mikuJadiBot({pathMikuJadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot'})
+meguminJadiBot({pathMikuJadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot'})
 }
 }
 }
@@ -412,7 +412,7 @@ return file.startsWith('pre-key-')
 })
 prekey = [...prekey, ...filesFolderPreKeys]
 filesFolderPreKeys.forEach(files => {
-unlinkSync(`./MeguminSession/${files}`)
+unlinkSync(`./MikuSession/${files}`)
 })
 } 
 function purgeSessionSB() {
