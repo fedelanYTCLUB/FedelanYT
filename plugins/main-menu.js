@@ -25,7 +25,7 @@ let handler = async (m, { conn, usedPrefix, __dirname }) => {
     
    
     const saludo = getGreeting()
-    const dev = '🈶 DEPOOL - Creador del Miku'
+    const dev = '🈹 DEPOOL - Creador de Miku'
     const emojis = ['🎀', '💙', '🎵']
     const error = '❌'
     const redes = 'https://github.com/Brauliovh3'
