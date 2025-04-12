@@ -10,7 +10,7 @@ let name2 = conn.getName(m.sender)
   let mundo = paisdata ? `${paisdata.name} ${paisdata.emoji}` : 'Desconocido'
   let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://i.pinimg.com/736x/7b/c6/95/7bc6955d19ce9fa6e562e634d85c912b.jpg')
   let bio = 0, fechaBio
-  let who2 = m.isGroup ? _.get(m, "mentionedJid[0]", m.quoted?.sender || m.sender) : m.sender
+ // let who2 = m.isGroup ? _.get(m, "mentionedJid[0]", m.quoted?.sender || m.sender) : m.sender
   let sinDefinir = '😿 Es privada'
   let biografia = await conn.fetchStatus(m.sender).catch(() => null)
   if (!biografia || !biografia[0] || biografia[0].status === null) {
@@ -32,11 +32,11 @@ if (age < 5) throw '*『🍼』Ven aquí, te adoptare!!*'
 user.name = name.trim()
 user.age = age
 user.descripcion = bio
- user.persona = age >= 18? '(Persona adulta)' : '(Persona joven)'
+// user.persona = age >= 18? '(Persona adulta)' : '(Persona joven)'
 user.regTime = + new Date
 user.registered = true
 global.db.data.users[m.sender].money += 5
-global.db.data.users[m.sender].cebollines += 15
+global.db.data.users[m.sender].chocolates += 15
 global.db.data.users[m.sender].exp += 245
 global.db.data.users[m.sender].joincount += 12
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 20)        
@@ -76,3 +76,4 @@ handler.tags = ['rg']
 handler.command = ['verify', 'verificar', 'reg', 'register', 'registrar'] 
 
 export default handler
+
