@@ -17,7 +17,7 @@ handler.before = async function (m, { conn, isAdmin, isOwner, isROwner, isBotAdm
   const chat = global.db.data.chats[m.chat]
   const mentionsString = [m.sender, ...(m.messageStubParameters || []), ...groupAdmins.map((v) => v.id)]
   const mentionsContentM = [m.sender, ...(m.messageStubParameters || [])]
-  const vn = 'https://qu.ax/OzTbp.mp3'
+  const vn = './src/media/miku.mp3'
   const vn2 = 'https://qu.ax/OzTbp.mp3'
   const redes = `github.com/Brauliovh3`
   const icons = 'https://a.storyblok.com/f/178900/1200x676/b1e0d587bd/gekijouban_project_sekai_kowareta_sekai_to_utaenai_miku_hero.jpg'
