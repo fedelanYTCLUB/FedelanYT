@@ -14,7 +14,7 @@ const waifuList = [
         name: "Hatsune Chibi",
         rarity: "común",
         probability: 5,  
-        img: "./storage/chibis/miku_chibi.png"
+        img: "./src/chibis/miku_chibi.png"
     },
     {
         name: "Neru Chibi",
