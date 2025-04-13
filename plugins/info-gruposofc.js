@@ -1,24 +1,82 @@
-let media = './src/Grupo.jpg'
-let handler = async (m, { conn, command }) => {
-let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-   // await conn.sendMessage(m.chat, { react: { text: '⚡️', key: m.key } })
- await m.react('⚡️')
-let str = `*💙 GRUPO OFICIAL*
+import fs from 'fs'
+import path from 'path'
 
-   *🎵⊹⋆𝓗𝓪𝓽𝓼𝓾𝓷𝓮 𝓜𝓲𝓴𝓾⋆⊹🎵*
-  ┃🧸❏ ${gp4}
+let handler = async (m, { conn }) => {
+    try {
+      
+        const mediaPath = './src/legend/miku_legend.jpg'
+        const wm = '͟͞(っ◔◡◔)っ 𝕄𝕚𝕜𝕦-ℂ𝕙𝕒𝕟 💙🎵'
+        const gp4 = 'Grupo Oficial de Hatsune Miku'
+        const md = 'https://whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o'
+        
+        
+        if (!fs.existsSync(mediaPath)) {
+            throw new Error('El archivo multimedia no existe')
+        }
 
-   *💙🌱HATSUNE MIKU OFICIAL GROUP🌱💙*
-┃🧸❏ https://chat.whatsapp.com/HEuy1hZCPmX1WaJ6zffQuV
-   
-   *_Canal Oficial_*
-┃💙❏ https://whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o
-`
-await conn.sendButton(m.chat, str, `͟͞(っ◔◡◔)っ 𝕄𝕚𝕜𝕦-ℂ𝕙𝕒𝕟 💙🎵\n` + wm, media, [
-['Menu Lista 💙', '/lista']], null, [
-['(っ◔◡◔)っ 𝕄𝕚𝕜𝕦-ℂ𝕙𝕒𝕟 💙🎵', `${md}`]], fkontak)}
-                      
-handler.command = ['grupos','linksk','gruposofc','gruposoficiales']
+        
+        const media = fs.readFileSync(mediaPath)
+        
+        
+        let str = `*💙 GRUPO OFICIAL*\n\n` +
+                `   *🎵⊹⋆𝓗𝓪𝓽𝓼𝓾𝓷𝓮 𝓜𝓲𝓴𝓾⋆⊹🎵*\n` +
+                `  ┃🧸❏ ${gp4}\n\n` +
+                `   *💙🌱HATSUNE MIKU OFICIAL GROUP🌱💙*\n` +
+                `┃🧸❏ https://chat.whatsapp.com/HEuy1hZCPmX1WaJ6zffQuV\n\n` +
+                `   *_Canal Oficial_*\n` +
+                `┃💙❏ ${md}`
+
+       
+        let fkontak = { 
+            key: { 
+                participants: "0@s.whatsapp.net", 
+                remoteJid: "status@broadcast", 
+                fromMe: false, 
+                id: "Halo" 
+            }, 
+            message: { 
+                contactMessage: { 
+                    vcard: `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` 
+                }
+            }, 
+            participant: "0@s.whatsapp.net" 
+        }
+
+        
+        await m.react('⚡️')
+
+       
+        await conn.sendMessage(m.chat, {
+            image: media,
+            caption: str,
+            footer: wm,
+            buttons: [
+                { buttonId: '/lista', buttonText: { displayText: 'Menu Lista 💙' }, type: 1 },
+                { buttonId: 'https://chat.whatsapp.com/HEuy1hZCPmX1WaJ6zffQuV', buttonText: { displayText: 'Grupo Oficial' }, type: 1 }
+            ],
+            headerType: 4,
+            contextInfo: {
+                externalAdReply: {
+                    title: '(っ◔◡◔)っ 𝕄𝕚𝕜𝕦-ℂ𝕙𝕒𝕟 💙🎵',
+                    body: md,
+                    thumbnail: media,
+                    mediaType: 2,
+                    mediaUrl: md,
+                    sourceUrl: md
+                }
+            }
+        }, { quoted: fkontak })
+
+    } catch (error) {
+        console.error('Error en el handler:', error)
+      
+        await conn.sendMessage(m.chat, {
+            text: 'Ocurrió un error al enviar el contenido multimedia. Por favor intenta nuevamente más tarde.'
+        })
+    }
+}
+
+handler.command = ['grupos', 'linksk', 'gruposofc', 'gruposoficiales']
 handler.register = true
 handler.exp = 33
 
