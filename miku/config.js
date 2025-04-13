@@ -29,7 +29,7 @@ global.languaje = 'Español'
 global.nameqr = 'HATSUNE - MIKU'
 global.sessions = 'MikuSession'
 global.jadi = 'MikuJadiBot'
-global.meguminJadibts = true
+global.mikuJadibts = true
 
 //𝑴𝑨𝑹𝑪𝑨𝑺 𝑫𝑬 𝑨𝑮𝑼𝑨
 global.packsticker = `💙🌱━━━━━━━━\n├ ɓσƭ:\n├ ρяοριєταяιο:\n├ ƒєϲнα ∂є ϲяєαϲιόи:\n├ нοяα:\n💙🌱━━━━━━━━`
