@@ -1,21 +1,28 @@
 import PhoneNumber from 'awesome-phonenumber'
 
 let handler = async (m, { conn, usedPrefix, text, args, command }) => {
-//m.react('⚙️')
-let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-let pp = await conn.profilePictureUrl(who).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')
-let biografia = await conn.fetchStatus('51988514570' +'@s.whatsapp.net').catch(_ => 'Sin Biografía')
-let biografiaBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}` +'@s.whatsapp.net').catch(_ => 'Sin Biografía')
-let bio = biografia.status?.toString() || 'Sin Biografía'
-let biobot = biografiaBot.status?.toString() || 'Sin Biografía'
-let name = await conn.getName(who)
+    m.react('⚙️')
+    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+    let pp = await conn.profilePictureUrl(who).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')
+    let biografia = await conn.fetchStatus('51988514570' + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
+    let biografiaBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}` + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
+    let bio = biografia.status?.toString() || 'Sin Biografía'
+    let biobot = biografiaBot.status?.toString() || 'Sin Biografía'
+    let name = await conn.getName(who)
 
-  await sendContactArray(conn, m.chat, [
-     [`${nomorown}`, `💙 Propietario`, `(ㅎㅊDEPOOLㅊㅎ)`, dev, correo, `BVH3`, `${global.yt}`, bio],
-[`${conn.user.jid.split('@')[0]}`, `Es Una Bot 💙`, `${packname}`, `📵 No Hacer Spam`, correo, `BVH3`, md, biobot]
-], m)
-  //m.reply(`Hola @${m.sender.split(`@`)[0]} este es el contacto de mi creador, no hagas spam!!`)
-  } 
+    
+    const nomorown = '51988514570' 
+    const dev = 'Desarrollador del bot' 
+    const correo = 'velasquezhuillcab@gmail.com' 
+    const packname = '💙Hatsune Miku Bot💙' 
+    const md = 'https://github.com' 
+    const global = { yt: 'https://youtube.com' } 
+
+    await sendContactArray(conn, m.chat, [
+        [`${nomorown}`, `💙 Propietario`, `(ㅎㅊDEPOOLㅊㅎ)`, dev, correo, `BVH3`, `${global.yt}`, bio],
+        [`${conn.user.jid.split('@')[0]}`, `Es Una Bot 💙`, `${packname}`, `📵 No Hacer Spam`, correo, `BVH3`, md, biobot]
+    ], m)
+}
 
 handler.help = ["creador","owner"]
 handler.tags = ["info"]
@@ -23,14 +30,13 @@ handler.command = ['owner','creador']
 export default handler
 
 async function sendContactArray(conn, jid, data, quoted, options) {
-        if (!Array.isArray(data[0]) && typeof data[0] === 'string') data = [data]
-                let contacts = []
-        for (let [number, name, isi, isi1, isi2, isi3, isi4, isi5] of data) {
-            number = number.replace(/[^0-9]/g, '')
-            let njid = number + '@s.whatsapp.net'
-            let biz = await conn.getBusinessProfile(njid).catch(_ => null) || {}
-            // N:;${name.replace(/\n/g, '\\n').split(' ').reverse().join(';')};;;
-            let vcard = `
+    if (!Array.isArray(data[0]) && typeof data[0] === 'string') data = [data]
+    let contacts = []
+    for (let [number, name, isi, isi1, isi2, isi3, isi4, isi5] of data) {
+        number = number.replace(/[^0-9]/g, '')
+        let njid = number + '@s.whatsapp.net'
+        let biz = await conn.getBusinessProfile(njid).catch(_ => null) || {}
+        let vcard = `
 BEGIN:VCARD
 VERSION:3.0
 N:Sy;Bot;;;
@@ -47,16 +53,15 @@ item4.URL:${isi4}
 item4.X-ABLabel:Website
 item5.X-ABLabel:${isi5}
 END:VCARD`.trim()
-            contacts.push({ vcard, displayName: name })
+        contacts.push({ vcard, displayName: name })
+    }
+    return await conn.sendMessage(jid, {
+        contacts: {
+            displayName: (contacts.length > 1 ? `2013 kontak` : contacts[0].displayName) || null,
+            contacts,
         }
-        return await conn.sendMessage(jid, {
-            contacts: {
-                displayName: (contacts.length > 1 ? `2013 kontak` : contacts[0].displayName) || null,
-                contacts,
-            }
-        },
-        {
-            quoted,
-            ...options
-        })
-        }
+    }, {
+        quoted,
+        ...options
+    })
+}
