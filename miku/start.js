@@ -283,7 +283,7 @@ for (const gjbts of readRutaJadiBot) {
 const botPath = join(rutaJadiBot, gjbts)
 const readBotPath = readdirSync(botPath)
 if (readBotPath.includes(creds)) {
-meguminJadiBot({pathMikuJadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot'})
+mikuJadiBot({pathMikuJadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot'})
 }
 }
 }
