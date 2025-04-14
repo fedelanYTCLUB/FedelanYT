@@ -51,7 +51,7 @@ NO HAY COLABORACION CON NINGUN HOST
 ---------
 ## Repo Stats 🔭
 
-![github card](https://github-readme-stats.vercel.app/api/pin/?username=Brauliovh3&repo=-Hatsune-Miku-&theme=chartreuse-dark)
+![github card](https://github-readme-stats.vercel.app/api/pin/?username=Brauliovh3&repo=HATSUNE-MIKU&theme=chartreuse-dark)
 
 ---------
 
