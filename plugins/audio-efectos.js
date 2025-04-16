@@ -1,12 +1,14 @@
-import {unlinkSync, readFileSync} from 'fs';
+import {unlinkSync, readFileSync, existsSync, mkdirSync} from 'fs';
 import {join} from 'path';
 import {exec} from 'child_process';
 
 const handler = async (m, {conn, args, __dirname, usedPrefix, command}) => {
   try {
     const q = m.quoted ? m.quoted : m;
-    const mime = ((m.quoted ? m.quoted : m.msg).mimetype || '');
+    const mime = (m.quoted ? m.quoted : m.msg).mimetype || '';
     let set;
+    
+   
     if (/bass/.test(command)) set = '-af equalizer=f=94:width_type=o:width=2:g=30';
     if (/blown/.test(command)) set = '-af acrusher=.1:1:64:0:log';
     if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3';
@@ -19,27 +21,74 @@ const handler = async (m, {conn, args, __dirname, usedPrefix, command}) => {
     if (/slow/.test(command)) set = '-filter:a "atempo=0.7,asetrate=44100"';
     if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"';
     if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"';
-    if (/audio/.test(mime)) {
-      const ran = getRandom('.mp3');
-      const filename = join(__dirname, '../megumin/tmp/' + ran);
-      const media = await q.download(true);
-      exec(`ffmpeg -i ${media} ${set} ${filename}`, async (err, stderr, stdout) => {
-        await unlinkSync(media);
-        if (err) throw `_*Error!*_`;
-        const buff = await readFileSync(filename);
-        conn.sendFile(m.chat, buff, ran, null, m, true, {
-          type: 'audioMessage',
-          ptt: true,
-        });
+    
+    if (!/audio/.test(mime)) {
+      throw `> *💙RESPONDA AL AUDIO O NOTA DE VOZ QUE SERÁ MODIFICADO, USANDO EL COMANDO ${usedPrefix + command}*`;
+    }
+
+    
+    const tmpDir = join(__dirname, '../miku/tmp');
+    if (!existsSync(tmpDir)) {
+      mkdirSync(tmpDir, { recursive: true });
+    }
+
+    const ran = getRandom('.mp3');
+    const filename = join(tmpDir, ran);
+    const media = await q.download(true);
+    
+    await new Promise((resolve, reject) => {
+      exec(`ffmpeg -i "${media}" ${set} "${filename}"`, async (err) => {
+        try {
+          // Delete original media file
+          if (existsSync(media)) {
+            unlinkSync(media);
+          }
+
+          if (err) {
+            // Delete output file if it exists
+            if (existsSync(filename)) {
+              unlinkSync(filename);
+            }
+            reject('_*Error al procesar el audio!*_');
+            return;
+          }
+
+          if (!existsSync(filename)) {
+            reject('_*El archivo procesado no se creó correctamente*_');
+            return;
+          }
+
+          const buff = readFileSync(filename);
+          await conn.sendFile(m.chat, buff, ran, null, m, true, {
+            type: 'audioMessage',
+            ptt: true,
+          });
+
+          
+          if (existsSync(filename)) {
+            unlinkSync(filename);
+          }
+          resolve();
+        } catch (e) {
+          
+          [media, filename].forEach(file => {
+            if (existsSync(file)) {
+              unlinkSync(file);
+            }
+          });
+          reject(e);
+        }
       });
-    } else throw `>💙 *𝚁𝙴𝚂𝙿𝙾𝙽𝙳𝙰 𝙰𝙻 𝙰𝚄𝙳𝙸𝙾 𝙾 𝙽𝙾𝚃𝙰 𝙳𝙴 𝚅𝙾𝚉 𝙴𝙻 𝙲𝚄𝙰𝙻 𝚂𝙴𝚁𝙰 𝙼𝙾𝙳𝙸𝙵𝙸𝙲𝙰𝙳𝙾, 𝚄𝚂𝙰𝙳𝙾 𝙴𝙻 𝙲𝙾𝙰𝙼𝙰𝙽𝙳𝙾 ${usedPrefix + command}*`;
+    });
   } catch (e) {
-    throw e;
+    console.error('Error en el handler:', e);
+    conn.reply(m.chat, `_*Ocurrió un error:*_ ${e.message || e}`, m);
   }
 };
+
 handler.help = ['bass', 'blown', 'deep', 'earrape', 'fast', 'fat', 'nightcore', 'reverse', 'robot', 'slow', 'smooth', 'tupai'].map((v) => v + ' [vn]');
 handler.tags = ['audio'];
-handler.register = true
+handler.register = true;
 handler.command = ['bass','blown','deep','earrape','fas?t','nightcore','reverse','robot','slow','smooth','tupai','squirrel','chipmunk'];
 export default handler;
 
