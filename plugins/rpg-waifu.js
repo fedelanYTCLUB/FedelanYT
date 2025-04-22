@@ -35,6 +35,12 @@ const waifuList = [
         img: "./src/chibis/teto_chibi.png"
     },
     {
+        name: "Gumi Chibi",
+        rarity: "común",
+        probability: 5,
+        img: "./src/chibis/gumi_chibi.png"
+    },
+    {
         name: "Emu Chibi",
         rarity: "común",
         probability: 5,
@@ -71,6 +77,12 @@ const waifuList = [
         rarity: "rara",
         probability: 4.285,
         img: "./src/raros/neru_raro.png"
+    },
+    {
+        name: "Gumi Megpoid 2006",
+        rarity: "rara",
+        probability: 4.285,
+        img: "./src/raros/gumi_raro.png"
     },
     {
         name: "Rin",
@@ -123,6 +135,12 @@ const waifuList = [
         img: "./src/epicos/rin_epico.png"
     },
     {
+        name: "💚Gumi💚",
+        rarity: "épica",
+        probability: 2.857,
+        img: "./src/epicos/gumi_epico.png"
+    },
+    {
         name: "❤Teto❤",
         rarity: "épica",
         probability: 2.857,
@@ -165,6 +183,12 @@ const waifuList = [
         rarity: "ultra rara",
         probability: 1.429,
         img: "./src/ultra/emu_ultra.png"
+    },
+    {
+        name: "💚Megpoid Gumi💚",
+        rarity: "ultra rara",
+        probability: 1.429,
+        img: "./src/ultra/gumi_ultra.png"
     },
     {
         name: "❤KASANE TETO❤",
@@ -238,11 +262,11 @@ for (const waifu of waifuList) {
 console.log(`Probabilidad total: ${totalProbability.toFixed(3)}%`); 
 
 const rarityAnimations = {
-    'común': './src/animations/miku.gif',
-    'rara': './src/animations/miku.gif',
-    'épica': './src/animations/miku.gif',
-    'ultra rara': './src/animations/miku.gif',
-    'Legendaria': './src/animations/miku.gif'
+    'común': 'https://media.tenor.com/AIHWOa8aHFAAAAAi/miku-hatsune.gif',
+    'rara': 'https://media.tenor.com/AIHWOa8aHFAAAAAi/miku-hatsune.gif',
+    'épica': 'https://media.tenor.com/AIHWOa8aHFAAAAAi/miku-hatsune.gif',
+    'ultra rara': 'https://media.tenor.com/AIHWOa8aHFAAAAAi/miku-hatsune.gif',
+    'Legendaria': 'https://media.tenor.com/AIHWOa8aHFAAAAAi/miku-hatsune.gif'
 };
 
 let handler = async (m, { conn }) => {
