@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="https://media1.tenor.com/m/kVia16tzOLAAAAAC/hatsune-miku-miku-hatsune.gif" width="100%">
+<img src="https://media1.tenor.com/m/kVia16tzOLAAAAAC/hatsune-miku-miku-hatsune.gif" width="50%">
 
 # ⚡『 ＨＡＴＳＵＮＥ ＭＩＫＵ ＢＯＴ 』⚡
 
