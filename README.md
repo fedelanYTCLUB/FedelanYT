@@ -1,3 +1,5 @@
+<!-- HATSUNE MIKU BOT README - ESTILO FUTURISTA CYBERPUNK -->
+
 <div align="center">
 
 # ⚡ 【﻿ＨＡＴＳＵＮＥ　ＭＩＫＵ】 ⚡
