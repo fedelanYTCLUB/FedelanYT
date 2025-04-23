@@ -1,4 +1,4 @@
-<!-- HATSUNE MIKU BOT README - ESTILO FUTURISTA CYBERPUNK -->
+<!-- HATSUNE MIKU BOT README - ESTILO FUTURISTA CYBERPUNK EN ESPAÑOL -->
 
 <div align="center">
 
@@ -6,12 +6,12 @@
 
 <img src="https://telegra.ph/file/5e7042bf17cde23989e71.jpg" width="600px" style="border-radius: 15px; box-shadow: 0 0 15px #0ff;">
 
-[![](https://img.shields.io/badge/⚙️_WHATSAPP_BOT_SYSTEM_⚙️-0c1c2c?style=for-the-badge&labelColor=0091ff&color=00eeff)](https://github.com/Brauliovh3/HATSUNE-MIKU)
+[![](https://img.shields.io/badge/⚙️_SISTEMA_BOT_WHATSAPP_⚙️-0c1c2c?style=for-the-badge&labelColor=0091ff&color=00eeff)](https://github.com/Brauliovh3/HATSUNE-MIKU)
 
 </div>
 
 <p align="center">
-<img src="https://readme-typing-svg.herokuapp.com?font=VT323&size=35&duration=3500&pause=300&color=00FAFA&center=true&vCenter=true&width=500&lines=VIRTUAL+IDOL+BOT+SYSTEM;POWERED+BY+(ㅎㅊDEPOOL);V.2.5.7+DIGITAL+INTERFACE;CONNECTING+TO+NETWORK...;CONNECTION+SECURE;INITIALIZE+MIKU+PROTOCOL" alt="Typing SVG" />
+<img src="https://readme-typing-svg.herokuapp.com?font=VT323&size=35&duration=3500&pause=300&color=00FAFA&center=true&vCenter=true&width=500&lines=SISTEMA+BOT+IDOL+VIRTUAL;DESARROLLADO+POR+(ㅎㅊDEPOOL);V.2.5.7+INTERFAZ+DIGITAL;CONECTANDO+A+LA+RED...;CONEXIÓN+SEGURA;INICIALIZANDO+PROTOCOLO+MIKU" alt="Typing SVG" />
 </p>
 
 <div align="center">
@@ -43,7 +43,7 @@
 
 </td>
 <td>
-<img src="https://i.pinimg.com/originals/e2/28/a9/e228a9a72255c56a5919c171903d8888.gif" width="250px">
+<img src="https://i.pinimg.com/originals/e2/28/a9/e228a9a72255c56a5919c171903d8888.gif" width="230px">
 </td>
 </tr>
 </table>
@@ -58,12 +58,12 @@
 </div>
 
 <p align="center">
-<a href="https://wa.me/51988514570"><img src="https://img.shields.io/badge/ACCESS_ADMIN_TERMINAL-0e254e?style=for-the-badge&logo=whatsapp&logoColor=00f7f7&labelColor=0b0b1a&logoWidth=30" alt="Admin Terminal"></a>
+<a href="https://wa.me/51988514570"><img src="https://img.shields.io/badge/ACCESO_TERMINAL_ADMIN-0e254e?style=for-the-badge&logo=whatsapp&logoColor=00f7f7&labelColor=0b0b1a&logoWidth=30" alt="Terminal Admin"></a>
 </p>
 
 <div align="center">
 
-*// Interfaz de admin disponible para reporte de bugs y actualizaciones //*
+*// Interfaz de administrador disponible para reporte de errores y actualizaciones //*
 
 </div>
 
@@ -72,12 +72,12 @@
 <div align="center">
 <img src="https://i.giphy.com/media/3og0IAF3rAz2ClYGME/giphy.webp" width="100px">
 
-## 【﻿ＮＥＴＷＯＲＫ　ＥＮＴＲＹ　ＰＯＩＮＴ】
+## 【﻿ＰＵＮＴＯ　ＤＥ　ＡＣＣＥＳＯ　Ａ　ＬＡ　ＲＥＤ】
 
 </div>
 
 <p align="center">
-<a href="https://chat.whatsapp.com/ElP65wJ4eVCKg1QIqw8lyg"><img src="https://img.shields.io/badge/CONECTAR_AL_NÚCLEO-0e254e?style=for-the-badge&logo=whatsapp&logoColor=00f7f7&labelColor=0b0b1a&logoWidth=30" alt="Network Core"></a>
+<a href="https://chat.whatsapp.com/ElP65wJ4eVCKg1QIqw8lyg"><img src="https://img.shields.io/badge/CONECTAR_AL_NÚCLEO-0e254e?style=for-the-badge&logo=whatsapp&logoColor=00f7f7&labelColor=0b0b1a&logoWidth=30" alt="Núcleo de Red"></a>
 </p>
 
 <div align="center">
@@ -111,7 +111,7 @@
 
 <div align="center">
 
-## 【﻿ＳＴＡＴＳ　ＰＡＮＥＬ】
+## 【﻿ＰＡＮＥＬ　ＤＥ　ＥＳＴＡＤÍＳＴＩＣＡＳ】
 
 </div>
 
@@ -127,7 +127,7 @@
 ---
 
 <div align="center">
-  <h2>【﻿ＳＹＳＴＥＭ　ＣＲＥＡＴＯＲ】</h2>
+  <h2>【﻿ＣＲＥＡＤＯＲ　ＤＥＬ　ＳＩＳＴＥＭＡ】</h2>
   
   <table style="border: none; background: transparent;">
   <tr>
@@ -139,13 +139,13 @@
   <td>
   
   ```css
-  [USER PROFILE]
+  [PERFIL DE USUARIO]
   > ID: (ㅎㅊDEPOOLㅊㅎ)
-  > RANK: System Administrator
-  > ACCESS: Level 5 (Full)
-  > STATUS: Online
-  > VERSION: 2.5.7
-  > SIGNATURE: Verified ✓
+  > RANGO: Administrador del Sistema
+  > ACCESO: Nivel 5 (Completo)
+  > ESTADO: En línea
+  > VERSIÓN: 2.5.7
+  > FIRMA: Verificada ✓
   ```
   
   </td>
@@ -157,13 +157,13 @@
 <div align="center">
 <img src="https://media1.tenor.com/m/NGpj9V4ScJ8AAAAd/hatsune-miku-discord.gif" width="400px">
 
-### 『 ＨＡＴＳＵＮＥ　ＭＩＫＵ　ＰＲＯＴＯＣＯＬ　ＡＣＴＩＶＡＤＯ 』
+### 『 ＰＲＯＴＯＣＯＬＯ　ＨＡＴＳＵＮＥ　ＭＩＫＵ　ＡＣＴＩＶＡＤＯ 』
 
-<img src="https://img.shields.io/badge/C%C3%93DIGO_MIKU-ACTIVADO-00eeff?style=for-the-badge&logoColor=blue&labelColor=black">
+<img src="https://img.shields.io/badge/CÓDIGO_MIKU-ACTIVADO-00eeff?style=for-the-badge&logoColor=blue&labelColor=black">
 </div>
 
 <div align="center">
 <img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=120&section=footer&fontSize=90">
 </div>
 
-<!-- © MIKU DIGITAL SYSTEM // BY (ㅎㅊDEPOOLㅊㅎ) -->
+<!-- © SISTEMA DIGITAL MIKU // POR (ㅎㅊDEPOOLㅊㅎ) -->
