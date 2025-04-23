@@ -1,4 +1,4 @@
-let media = imagen1; // Asegúrate de que imagen10 contenga la ruta de la imagen que deseas enviar
+let media = imagen1; 
 let handler = async (m, { conn, command }) => {
     let fkontak = {
         "key": {
@@ -32,12 +32,9 @@ wa.me/xxxxxxxxxxx
 🧩 *Grupos Oficiales:*
 1) *${gp1}*\n
 2) *${gp2}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-📍 *Canal De Youtube:*
-${yt}
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈`;
 
-    // Enviar la imagen como documento con el mensaje estructurado
+   
     await conn.sendFile(m.chat, media, 'imagen.jpg', str, fkontak, true);
 };
 
