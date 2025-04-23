@@ -16,7 +16,7 @@ let handler = async (m, {conn, usedPrefix}) => {
    let user = global.db.data.users[who]
    let name = conn.getName(who);
    
-   let txt = (`${who == m.sender ? `╭━〔  ${global.packname}  〕⬣\n┋ Usuario: ${name}\n┋ Cebollines En Cartera: ${user.chocolates}\n┋ Cebollines En Banco: ${user.bank}\n┋ Experiencia: ${user.exp}\n┋ Nivel: ${user.level}\n┋ Rol: ${user.role}\n┋ Fecha: ${new Date().toLocaleString('id-ID')}\n╰━━━━━━━━━━━━⬣` : `╭━〔  ${global.packname}  〕⬣\n┋ Usuario: @${who.split('@')[0]}\n┋ Cebollines En Cartera: ${user.chocolates}\n┋ Cebollines En Banco: ${user.bank}\n┋ Experiencia: ${user.exp}\n┋ Nivel: ${user.level}\n┋ Rol: ${user.role}\n┋ Fecha: ${new Date().toLocaleString('id-ID')}\n╰━━━━━━━━━━━━⬣`}`)
+   let txt = (`${who == m.sender ? `╭━〔  ${global.packname}  〕⬣\n┋ Usuario: ${name}\n┋ Cebollines En Cartera: ${user.cebollines}\n┋ Cebollines En Banco: ${user.bank}\n┋ Experiencia: ${user.exp}\n┋ Nivel: ${user.level}\n┋ Rol: ${user.role}\n┋ Fecha: ${new Date().toLocaleString('id-ID')}\n╰━━━━━━━━━━━━⬣` : `╭━〔  ${global.packname}  〕⬣\n┋ Usuario: @${who.split('@')[0]}\n┋ Cebollines En Cartera: ${user.cebollines}\n┋ Cebollines En Banco: ${user.bank}\n┋ Experiencia: ${user.exp}\n┋ Nivel: ${user.level}\n┋ Rol: ${user.role}\n┋ Fecha: ${new Date().toLocaleString('id-ID')}\n╰━━━━━━━━━━━━⬣`}`)
    
    try {
      
