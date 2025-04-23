@@ -5,7 +5,7 @@ const handler = async (m, {usedPrefix}) => {
   const name = conn.getName(who);
   m.reply(`╭━〔  ${global.packname}  〕⬣
 ┋💙 *Usuario:* ${name}
-┋🍪 *Cookies*: ${global.db.data.users[who].cookies} 🍪
+┋🌱 *Cebollines*: ${global.db.data.users[who].cebollines} 🌱
 ┋💰 *Experiencia:* ${global.db.data.users[who].exp}
 ╰━━━━━━━━━━━━⬣
 
@@ -18,5 +18,5 @@ const handler = async (m, {usedPrefix}) => {
 };
 handler.help = ['bal'];
 handler.tags = ['xp'];
-handler.command = ['bal', 'diamantes', 'diamond', 'balance'];
+handler.command = ['bal', 'diamantes', 'diamond', 'balance','riquezas'];
 export default handler;
