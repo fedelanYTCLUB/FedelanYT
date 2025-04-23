@@ -43,7 +43,7 @@
 
 </td>
 <td>
-<img src="https://i.pinimg.com/originals/e2/28/a9/e228a9a72255c56a5919c171903d8888.gif" width="230px">
+<img src="https://i.pinimg.com/originals/e2/28/a9/e228a9a72255c56a5919c171903d8888.gif" width="250px">
 </td>
 </tr>
 </table>
