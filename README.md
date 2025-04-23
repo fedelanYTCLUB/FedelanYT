@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="https://i.imgur.com/8BzmCU7.gif" width="100%">
+<img src="https://media1.tenor.com/m/kVia16tzOLAAAAAC/hatsune-miku-miku-hatsune.gif" width="100%">
 
 # ⚡『 ＨＡＴＳＵＮＥ ＭＩＫＵ ＢＯＴ 』⚡
 
@@ -146,7 +146,7 @@
 <div style="background: linear-gradient(90deg, #ff00ff00, #00ffff, #ff00ff00); height: 3px; margin: 20px 0;"></div>
 
 <div align="center">
-<img src="https://i.imgur.com/RcgijXj.gif" width="500px" style="border-radius: 10px; margin: 15px 0;">
+<img src="https://media1.tenor.com/m/vqEviEIvsrgAAAAC/hatsune-miku-miku.gif" width="500px" style="border-radius: 10px; margin: 15px 0;">
 
 <h3 style="color: #00fbff; text-shadow: 0 0 5px #00fbff;">『 PROJECT MIKU VOCALOID PROTOCOL - ONLINE 』</h3>
 
