@@ -1,6 +1,5 @@
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '1'
 import './config.js' 
-import { mikuJadiBot } from '../plugins/jadibot-serbot.js'
 import { createRequire } from 'module'
 import path, { join } from 'path'
 import {fileURLToPath, pathToFileURL} from 'url'
@@ -72,7 +71,6 @@ global.db.chain = chain(global.db.data);
 };
 loadDatabase();
 
-
 /* ------------------------------------------------*/
 
 global.chatgpt = new Low(new JSONFile(path.join(__dirname, '/db/chatgpt.json')));
@@ -100,13 +98,81 @@ loadChatgptDB();
 global.creds = 'creds.json'
 global.authFile = 'MikuSession'
 global.authFileJB  = 'MikuJadiBot'
-/*global.rutaBot = join(__dirname, authFile)
-global.rutaJadiBot = join(__dirname, authFileJB)
 
-if (!fs.existsSync(rutaJadiBot)) {
-fs.mkdirSync(rutaJadiBot)
+// ==================== [NUEVO SISTEMA DE SUB-BOTS] ====================
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
-*/
+
+global.rutaJadiBot = join(__dirname, '../MikuJadiBot');
+
+let subBotQueue = [];
+let isReconnecting = false;
+
+async function handleSubBots() {
+    if (isReconnecting || !global.rutaJadiBot) return;
+    isReconnecting = true;
+
+    const maxRetries = 3;
+    const retryDelay = 10000;
+
+    for (const botFolder of readdirSync(global.rutaJadiBot)) {
+        const botPath = join(global.rutaJadiBot, botFolder);
+        const credsPath = join(botPath, 'creds.json');
+
+        if (!fs.existsSync(credsPath)) {
+            fs.rmSync(botPath, { recursive: true });
+            continue;
+        }
+
+        let attempts = 0;
+        while (attempts < maxRetries) {
+            try {
+                attempts++;
+                console.log(chalk.blue(`🔄 Reconectando sub-bot ${botFolder} (Intento ${attempts}/${maxRetries})`));
+                
+                const { state: subBotState } = await useMultiFileAuthState(botPath);
+                const subBotConn = makeWASocket({
+                    ...connectionOptions,
+                    auth: subBotState,
+                    printQRInTerminal: false,
+                    logger: pino({ level: 'silent' })
+                });
+
+                subBotConn.ev.on('connection.update', (update) => {
+                    if (update.connection === 'close') {
+                        subBotQueue.push(botFolder);
+                    }
+                });
+                break;
+            } catch (error) {
+                console.error(chalk.red(`❌ Error en sub-bot ${botFolder}:`, error.message));
+                if (attempts >= maxRetries) {
+                    fs.rmSync(botPath, { recursive: true });
+                }
+                await delay(retryDelay);
+            }
+        }
+    }
+    isReconnecting = false;
+}
+
+// Iniciar sistema de sub-bots
+if (global.mikuJadibts) {
+    if (!existsSync(global.rutaJadiBot)) mkdirSync(global.rutaJadiBot, { recursive: true });
+    subBotQueue.push(...readdirSync(global.rutaJadiBot));
+    handleSubBots().catch(console.error);
+}
+
+setInterval(async () => {
+    if (subBotQueue.length > 0 && !isReconnecting) {
+        console.log(chalk.magenta(`📬 Procesando ${subBotQueue.length} sub-bots en cola...`));
+        await handleSubBots();
+        subBotQueue = [];
+    }
+}, 30000);
+// ==================== [FIN NUEVO SISTEMA] ====================
+
 const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile)
 const msgRetryCounterMap = new Map()
 const msgRetryCounterCache = new NodeCache({ stdTTL: 0, checkperiod: 0 })
@@ -222,6 +288,8 @@ if (store) {
 } return {
 conversation: 'SimpleBot',
 }}
+
+// ==================== [MODIFICACIÓN EN connectionUpdate] ====================
 async function connectionUpdate(update) {  
 const {connection, lastDisconnect, isNewLogin} = update
 global.stopped = connection
@@ -250,7 +318,8 @@ await global.reloadHandler(true).catch(console.error)
 console.log(chalk.bold.blueBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ☂\n┆ 💙 CONEXIÓN PERDIDA CON EL SERVIDOR, RECONECTANDO....\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ☂`))
 await global.reloadHandler(true).catch(console.error)
 } else if (reason === DisconnectReason.connectionReplaced) {
-console.log(chalk.bold.yellowBright("╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ✗\n┆ 💙 CONEXIÓN REEMPLAZADA, SE HA ABIERTO OTRA NUEVA SESION, POR FAVOR, CIERRA LA SESIÓN ACTUAL PRIMERO.\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ✗"))
+console.log(chalk.bold.yellowBright("⚠️ Reconectando sub-bots por reemplazo de conexión..."));
+subBotQueue.push(...readdirSync(global.rutaJadiBot));
 } else if (reason === DisconnectReason.loggedOut) {
 console.log(chalk.bold.redBright(`\n💙 SIN CONEXIÓN, BORRE LA CARPETA ${global.authFile} Y ESCANEA EL CÓDIGO QR 💙`))
 await global.reloadHandler(true).catch(console.error)
@@ -259,35 +328,14 @@ console.log(chalk.bold.cyanBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄�
 await global.reloadHandler(true).catch(console.error)
 } else if (reason === DisconnectReason.timedOut) {
 console.log(chalk.bold.yellowBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ▸\n┆ ⌛ TIEMPO DE CONEXIÓN AGOTADO, RECONECTANDO....\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ▸`))
-await global.reloadHandler(true).catch(console.error) //process.send('reset')
+await global.reloadHandler(true).catch(console.error)
 } else {
 console.log(chalk.bold.redBright(`\n💙❗ RAZON DE DESCONEXIÓN DESCONOCIDA: ${reason || 'No encontrado'} >> ${connection || 'No encontrado'}`))
 }}
 }
+// ==================== [FIN MODIFICACIÓN] ====================
+
 process.on('uncaughtException', console.error);
-
-global.rutaJadiBot = join(__dirname, '../MikuJadiBot')
-
-if (global.mikuJadibts) {
-if (!existsSync(global.rutaJadiBot)) {
-mkdirSync(global.rutaJadiBot, { recursive: true }) 
-console.log(chalk.bold.cyan(`La carpeta: ${jadi} se creó correctamente.`))
-} else {
-console.log(chalk.bold.cyan(`La carpeta: ${jadi} ya está creada.`)) 
-}
-
-const readRutaJadiBot = readdirSync(rutaJadiBot)
-if (readRutaJadiBot.length > 0) {
-const creds = 'creds.json'
-for (const gjbts of readRutaJadiBot) {
-const botPath = join(rutaJadiBot, gjbts)
-const readBotPath = readdirSync(botPath)
-if (readBotPath.includes(creds)) {
-mikuJadiBot({pathMikuJadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot'})
-}
-}
-}
-}
 
 let isInit = true;
 let handler = await import('./handler.js');
@@ -415,28 +463,25 @@ filesFolderPreKeys.forEach(files => {
 unlinkSync(`./MikuSession/${files}`)
 })
 } 
+
+// ==================== [NUEVA purgeSessionSB] ====================
 function purgeSessionSB() {
-try {
-const listaDirectorios = readdirSync(`./${authFileJB}/`);
-let SBprekey = [];
-listaDirectorios.forEach(directorio => {
-if (statSync(`./${authFileJB}/${directorio}`).isDirectory()) {
-const DSBPreKeys = readdirSync(`./${authFileJB}/${directorio}`).filter(fileInDir => {
-return fileInDir.startsWith('pre-key-')
-})
-SBprekey = [...SBprekey, ...DSBPreKeys];
-DSBPreKeys.forEach(fileInDir => {
-if (fileInDir !== 'creds.json') {
-unlinkSync(`./${authFileJB}/${directorio}/${fileInDir}`)
-}})
-}})
-if (SBprekey.length === 0) {
-console.log(chalk.bold.green(`\n╭» 🟡 MikuJadiBot 🟡\n│→ NADA POR ELIMINAR \n╰― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― 🗑️♻️`))
-} else {
-console.log(chalk.bold.cyanBright(`\n╭» ⚪ MikuJadiBot ⚪\n│→ ARCHIVOS NO ESENCIALES ELIMINADOS\n╰― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― 🗑️♻️`))
-}} catch (err) {
-console.log(chalk.bold.red(`\n╭» 🔴 MikuJadiBot 🔴\n│→ OCURRIÓ UN ERROR\n╰― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― ― 🗑️♻️\n` + err))
-}}
+    try {
+        const listaDirectorios = readdirSync(`./${authFileJB}/`);
+        listaDirectorios.forEach(directorio => {
+            const DSBPreKeys = readdirSync(`./${authFileJB}/${directorio}`).filter(fileInDir => 
+                fileInDir.startsWith('pre-key-') || fileInDir.startsWith('session-')
+            );
+            DSBPreKeys.forEach(fileInDir => {
+                unlinkSync(`./${authFileJB}/${directorio}/${fileInDir}`);
+            });
+        });
+    } catch (err) {
+        console.error(chalk.red("❌ Error al limpiar sesiones:", err));
+    }
+}
+// ==================== [FIN NUEVA purgeSessionSB] ====================
+
 function purgeOldFiles() {
 const directories = ['./MikuSession/', './MikuJadiBot/']
 directories.forEach(dir => {
@@ -499,11 +544,10 @@ import(`${file}?update=${Date.now()}`)
 async function isValidPhoneNumber(number) {
 try {
 number = number.replace(/\s+/g, '')
-// Si el número empieza con '+521' o '+52 1', quitar el '1'
 if (number.startsWith('+521')) {
-number = number.replace('+521', '+52'); // Cambiar +521 a +52
+number = number.replace('+521', '+52');
 } else if (number.startsWith('+52') && number[4] === '1') {
-number = number.replace('+52 1', '+52'); // Cambiar +52 1 a +52
+number = number.replace('+52 1', '+52');
 }
 const parsedNumber = phoneUtil.parseAndKeepRawInput(number)
 return phoneUtil.isValidNumber(parsedNumber)
