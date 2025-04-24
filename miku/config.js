@@ -8,9 +8,8 @@ import axios from 'axios';
 import moment from 'moment-timezone';
 import '../plugins/main-allfake.js';
 
-//BETA: Si quiere evitar escribir el número que será bot en la consola, agregué desde aquí entonces:
-//Sólo aplica para opción 2 (ser bot con código de texto de 8 digitos)
-global.botnumber = '' //Ejemplo: +573138954963
+
+global.botnumber = '' 
 global.confirmCode = ''
 
 //𝑺𝑶𝑳𝑶 𝑫𝑬𝑺𝑨𝑹𝑹𝑶𝑳𝑳𝑨𝑫𝑶𝑹𝑬𝑺 
@@ -63,7 +62,7 @@ global.gp2 = 'https://chat.whatsapp.com/HEuy1hZCPmX1WaJ6zffQuV'//Grupo de enlace
 global.comunidad1 = 'https://chat.whatsapp.com/HEuy1hZCPmX1WaJ6zffQuV' //Comunidad 
 global.channel = 'https://whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o' //Canal 
 global.channel2 = 'https://whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o' //Canal 
-global.md = 'https://github.com/Brauliovh3/Hatsune_Miku_2.0' //Github Oficial
+global.md = 'https://github.com/Brauliovh3/HATSUNE-MIKU' //Github Oficial
 global.correo = 'velasquezhuillcab@gmail.com'
 
 var ase = new Date(); var hour = ase.getHours(); switch(hour){ case 0: hour = 'Linda Mañana'; break; case 1: hour = 'Linda Mañana'; break; case 2: hour = 'Linda Mañana'; break; case 3: hour = 'Linda Mañana'; break; case 4: hour = 'linda mañana'; break; case 5: hour = 'Linda Mañana'; break; case 6: hour = 'Linda Mañana'; break; case 7: hour = 'Linda Mañana'; break; case 8: hour = 'Linda Mañana'; break; case 9: hour = 'Linda Mañana'; break; case 10: hour = 'Lindo Dia'; break; case 11: hour = 'Lindo Dia'; break; case 12: hour = 'Lindo Dia'; break; case 13: hour = 'Lindo Dia'; break; case 14: hour = 'Linda Tarde'; break; case 15: hour = 'Linda Tarde'; break; case 16: hour = 'Linda Tarde'; break; case 17: hour = 'Linda Tarde'; break; case 18: hour = 'Linda Noche'; break; case 19: hour = 'Linda Noche'; break; case 20: hour = 'Linda Noche'; break; case 21: hour = 'Linda Noche'; break; case 22: hour = 'Linda Noche'; break; case 23: hour = 'Linda Noche'; break;}
