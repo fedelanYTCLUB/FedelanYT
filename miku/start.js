@@ -97,81 +97,6 @@ loadChatgptDB();
 
 global.creds = 'creds.json'
 global.authFile = 'MikuSession'
-global.authFileJB  = 'MikuJadiBot'
-
-// ==================== [NUEVO SISTEMA DE SUB-BOTS] ====================
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-global.rutaJadiBot = join(__dirname, '../MikuJadiBot');
-
-let subBotQueue = [];
-let isReconnecting = false;
-
-async function handleSubBots() {
-    if (isReconnecting || !global.rutaJadiBot) return;
-    isReconnecting = true;
-
-    const maxRetries = 3;
-    const retryDelay = 10000;
-
-    for (const botFolder of readdirSync(global.rutaJadiBot)) {
-        const botPath = join(global.rutaJadiBot, botFolder);
-        const credsPath = join(botPath, 'creds.json');
-
-        if (!fs.existsSync(credsPath)) {
-            fs.rmSync(botPath, { recursive: true });
-            continue;
-        }
-
-        let attempts = 0;
-        while (attempts < maxRetries) {
-            try {
-                attempts++;
-                console.log(chalk.blue(`🔄 Reconectando sub-bot ${botFolder} (Intento ${attempts}/${maxRetries})`));
-                
-                const { state: subBotState } = await useMultiFileAuthState(botPath);
-                const subBotConn = makeWASocket({
-                    ...connectionOptions,
-                    auth: subBotState,
-                    printQRInTerminal: false,
-                    logger: pino({ level: 'silent' })
-                });
-
-                subBotConn.ev.on('connection.update', (update) => {
-                    if (update.connection === 'close') {
-                        subBotQueue.push(botFolder);
-                    }
-                });
-                break;
-            } catch (error) {
-                console.error(chalk.red(`❌ Error en sub-bot ${botFolder}:`, error.message));
-                if (attempts >= maxRetries) {
-                    fs.rmSync(botPath, { recursive: true });
-                }
-                await delay(retryDelay);
-            }
-        }
-    }
-    isReconnecting = false;
-}
-
-// Iniciar sistema de sub-bots
-if (global.mikuJadibts) {
-    if (!existsSync(global.rutaJadiBot)) mkdirSync(global.rutaJadiBot, { recursive: true });
-    subBotQueue.push(...readdirSync(global.rutaJadiBot));
-    handleSubBots().catch(console.error);
-}
-
-setInterval(async () => {
-    if (subBotQueue.length > 0 && !isReconnecting) {
-        console.log(chalk.magenta(`📬 Procesando ${subBotQueue.length} sub-bots en cola...`));
-        await handleSubBots();
-        subBotQueue = [];
-    }
-}, 30000);
-// ==================== [FIN NUEVO SISTEMA] ====================
 
 const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile)
 const msgRetryCounterMap = new Map()
@@ -289,7 +214,6 @@ if (store) {
 conversation: 'SimpleBot',
 }}
 
-// ==================== [MODIFICACIÓN EN connectionUpdate] ====================
 async function connectionUpdate(update) {  
 const {connection, lastDisconnect, isNewLogin} = update
 global.stopped = connection
@@ -318,8 +242,7 @@ await global.reloadHandler(true).catch(console.error)
 console.log(chalk.bold.blueBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ☂\n┆ 💙 CONEXIÓN PERDIDA CON EL SERVIDOR, RECONECTANDO....\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ☂`))
 await global.reloadHandler(true).catch(console.error)
 } else if (reason === DisconnectReason.connectionReplaced) {
-console.log(chalk.bold.yellowBright("⚠️ Reconectando sub-bots por reemplazo de conexión..."));
-subBotQueue.push(...readdirSync(global.rutaJadiBot));
+console.log(chalk.bold.yellowBright("⚠️ Conexión reemplazada, se abrió una nueva conexión. Por favor, cierra la sesión actual primero."));
 } else if (reason === DisconnectReason.loggedOut) {
 console.log(chalk.bold.redBright(`\n💙 SIN CONEXIÓN, BORRE LA CARPETA ${global.authFile} Y ESCANEA EL CÓDIGO QR 💙`))
 await global.reloadHandler(true).catch(console.error)
@@ -333,7 +256,6 @@ await global.reloadHandler(true).catch(console.error)
 console.log(chalk.bold.redBright(`\n💙❗ RAZON DE DESCONEXIÓN DESCONOCIDA: ${reason || 'No encontrado'} >> ${connection || 'No encontrado'}`))
 }}
 }
-// ==================== [FIN MODIFICACIÓN] ====================
 
 process.on('uncaughtException', console.error);
 
@@ -464,26 +386,8 @@ unlinkSync(`./MikuSession/${files}`)
 })
 } 
 
-// ==================== [NUEVA purgeSessionSB] ====================
-function purgeSessionSB() {
-    try {
-        const listaDirectorios = readdirSync(`./${authFileJB}/`);
-        listaDirectorios.forEach(directorio => {
-            const DSBPreKeys = readdirSync(`./${authFileJB}/${directorio}`).filter(fileInDir => 
-                fileInDir.startsWith('pre-key-') || fileInDir.startsWith('session-')
-            );
-            DSBPreKeys.forEach(fileInDir => {
-                unlinkSync(`./${authFileJB}/${directorio}/${fileInDir}`);
-            });
-        });
-    } catch (err) {
-        console.error(chalk.red("❌ Error al limpiar sesiones:", err));
-    }
-}
-// ==================== [FIN NUEVA purgeSessionSB] ====================
-
 function purgeOldFiles() {
-const directories = ['./MikuSession/', './MikuJadiBot/']
+const directories = ['./MikuSession/']
 directories.forEach(dir => {
 readdirSync(dir, (err, files) => {
 if (err) throw err
