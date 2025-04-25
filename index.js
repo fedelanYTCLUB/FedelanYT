@@ -8,7 +8,7 @@ import { createInterface } from 'readline'
 import yargs from 'yargs'
 import chalk from 'chalk'
 
-console.log(chalk.magentaBright('\nIniciando....'))
+console.log(chalk.magentaBright('\n01 Iniciando 01'))
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(__dirname)
@@ -22,7 +22,7 @@ cfonts.say('HATSUNE\nMIKU', {
   gradient: ['magenta', 'cyan']
 })
 
-cfonts.say('Made With DEPOOL', {
+cfonts.say('HECHO POR DEPOOL', {
   font: 'console',
   align: 'center',
   colors: ['cyan', 'cyan', 'cyan']
