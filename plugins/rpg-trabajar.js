@@ -49,6 +49,6 @@ let handler = async (m, { conn, isPrems }) => {
 
 handler.help = ['w', 'work']
 handler.tags = ['rpg']
-handler.command = ['w','work']
+handler.command = ['w','work','trabajar']
 handler.register = true
 export default handler
