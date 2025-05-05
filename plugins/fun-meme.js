@@ -10,7 +10,8 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
     'https://vm.tiktok.com/ZMBKH8dkX/',
     'https://vm.tiktok.com/ZMBKu7Xp8/',
     'https://vm.tiktok.com/ZMBKHenkb/',
-    'https://vm.tiktok.com/ZMBKuENd9/'
+    'https://vm.tiktok.com/ZMBKuENd9/',
+    'https://vm.tiktok.com/ZMBK9Sdjm/'
   ];
 
   try {
