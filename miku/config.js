@@ -14,11 +14,11 @@ global.confirmCode = ''
 
 //𝑺𝑶𝑳𝑶 𝑫𝑬𝑺𝑨𝑹𝑹𝑶𝑳𝑳𝑨𝑫𝑶𝑹𝑬𝑺 
 global.owner = [
-  ['51988514570', '(ㅎㅊDEPOOLㅊㅎ)', true],
-  ['51939508653', 'Rafael', true]
+  ['5491156178758', '(ㅎㅊDEPOOLㅊㅎ)', true],
+  ['5491156178758', 'Rafael', true]
 ];
 
-global.suittag = ['51988514570']
+global.suittag = ['5491156178758']
 global.prems = []
 
 global.libreria = 'Baileys'
