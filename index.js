@@ -12,10 +12,10 @@ console.log(chalk.magentaBright('\n01 Iniciando 01'))
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(__dirname)
-const cfonts = require('./cfonts');
+const { name, description, author, version } = require(join(__dirname, './package.json'))
 const rl = createInterface(process.stdin, process.stdout)
 
-cfonts.say('HATSUNE\nMIKU', {
+cfonts.say('Fedelan\nYT', {
   font: 'block',
   align: 'center',
   colors: ['blue', 'cyan'],
